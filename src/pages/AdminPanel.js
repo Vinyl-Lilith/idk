@@ -320,7 +320,7 @@ export const AdminPanel = () => {
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-xs font-mono font-bold" style={{ color }}>{alert.level}</span>
-                        <span className="text-xs font-mono text-slate-700">{new Date(alert.createdAt).toLocaleString()}</span>
+                        <span className="text-xs font-mono text-slate-700">{new Date(alert.timestamp || alert.createdAt).toLocaleString()}</span>
                       </div>
                       <p className="text-sm font-mono text-slate-300">{alert.message}</p>
                     </div>
