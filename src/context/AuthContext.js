@@ -33,7 +33,17 @@ export const AuthProvider = ({ children }) => {
   const fetchUser = useCallback(async () => {
     try {
       const response = await authAPI.getMe();
-      setUser(response.data.data);
+      const userData = response.data.data;
+      setUser(userData);
+      // Apply the user's saved theme preference to the document
+      const savedTheme = userData?.theme || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+      else if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+      else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', prefersDark);
+      }
     } catch (error) {
       console.error('Failed to fetch user:', error);
       logout();
