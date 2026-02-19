@@ -7,9 +7,7 @@ import {
   Users, 
   History, 
   KeyRound, 
-  ShieldCheck, 
   Trash2, 
-  UserMinus, 
   CheckCircle,
   Activity,
   UserCheck,
@@ -81,15 +79,6 @@ export const AdminPanel = () => {
       toast.success(`User ${currentlyBanned ? 'unbanned' : 'banned'}`);
       fetchUsers();
     } catch (error) { toast.error('Failed to ban/unban user'); }
-  };
-
-  const handleRestrictUser = async (id, username, currentlyRestricted) => {
-    if (!window.confirm(`${currentlyRestricted ? 'Unrestrict' : 'Restrict'} user ${username}?`)) return;
-    try {
-      await adminAPI.restrictUser(id, !currentlyRestricted);
-      toast.success(`User ${currentlyRestricted ? 'unrestricted' : 'restricted'}`);
-      fetchUsers();
-    } catch (error) { toast.error('Failed to restrict/unrestrict user'); }
   };
 
   const handlePromoteUser = async (id, username) => {
