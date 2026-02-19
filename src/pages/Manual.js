@@ -11,7 +11,6 @@ import {
   Zap, 
   AlertTriangle, 
   RotateCcw,
-  Thermometer,
   Wind,
   FlaskConical
 } from 'lucide-react';
